@@ -5,6 +5,25 @@
     <title>Title</title>
 </head>
 <body>
-home
+<h1>Upload Images</h1>
+
+<form th:action="@{/images/upload}" method="post" enctype="multipart/form-data">
+    <input type="file" name="images" multiple required>
+    <button type="submit">Upload</button>
+</form>
+
+<div th:if="${imageUrls}">
+    <h3>Uploaded Images:</h3>
+    <ul style="list-style-type: none;">
+        <li th:each="url : ${imageUrls}">
+            <img th:src="${url}" alt="Uploaded Image" width="200"/>
+        </li>
+    </ul>
+</div>
+
+<div th:if="${error}">
+    <p th:text="${error}" style="color:red;"></p>
+</div>
+
 </body>
 </html>
