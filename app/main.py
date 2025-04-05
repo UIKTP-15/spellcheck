@@ -4,7 +4,8 @@ from utils.process_ocr_result import (
     sort_words, format_text, calculate_center,
     clean_unnecessary_characters, correct_brackets_in_text
 )
-from typing import List, Dict, Tuple
+from concurrent.futures import ThreadPoolExecutor
+from typing import List, Dict
 import os
 import base64
 import tempfile
@@ -29,30 +30,39 @@ class OCRResponse(BaseModel):
 
 @app.post("/detect-text/", response_model=OCRResponse, summary="Detect handwritten text in an image",
           description="Processes an uploaded image and returns detected text with coordinates and confidence scores.")
-async def detect_text(file: UploadFile = File(...)):
+async def detect_text(files: List[UploadFile] = File(...)):
     """Uploads an image and extracts handwritten text using Google Vision OCR."""
     try:
-        image_bytes = await file.read()
-        detected_words: List[Tuple] = google_vision.detect_document_text(image_bytes, is_local_file=False)
-        words_centered: List[Dict] = []
+        final_text_result = ""
+        with ThreadPoolExecutor(max_workers=3) as thread_executor:
+            futures = []
+            for file in files:
+                image_bytes = await file.read()
+                futures.append(thread_executor.submit(google_vision.detect_document_text, path_or_content=image_bytes, is_local_file=False))
 
-        for word, vertices, confidence in detected_words:
-            x_center, y_center = calculate_center(vertices)
-            words_centered.append({
-                "text_object_center": (x_center, y_center),
-                "word": word,
-                "confidence": confidence,
-                "vertices": vertices
-            })
+            for future in futures:
+                detected_words = future.result()
+                words_centered: List[Dict] = []
+                for word, vertices, confidence in detected_words:
+                    x_center, y_center = calculate_center(vertices)
+                    words_centered.append({
+                        "text_object_center": (x_center, y_center),
+                        "word": word,
+                        "confidence": confidence,
+                        "vertices": vertices
+                    })
 
-        sorted_words: List[Dict] = sort_words(words_centered)
-        print(sorted_words)
-        correct_text: List[Dict] = clean_unnecessary_characters(sorted_words)
-        formatted_text: str = format_text(correct_text)
-        corrected_brackets_text: str = correct_brackets_in_text(formatted_text)
-        print(corrected_brackets_text)
-        return {"text": corrected_brackets_text}
+                sorted_words: List[Dict] = sort_words(words_centered)
+                print(sorted_words)
+                correct_text: List[Dict] = clean_unnecessary_characters(sorted_words)
+                formatted_text: str = format_text(correct_text)
+                corrected_brackets_text: str = correct_brackets_in_text(formatted_text)
+                final_text_result += f"{corrected_brackets_text}\n"
+            return {"text": final_text_result}
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="127.0.0.1", port=8080, reload=True)
