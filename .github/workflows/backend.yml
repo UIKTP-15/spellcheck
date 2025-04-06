@@ -1,0 +1,29 @@
+name: Spring Boot Backend Workflow
+
+on:
+  push:
+    branches:
+      - backend
+  pull_request:
+    branches:
+      - backend
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17' # Or whatever version you're using
+
+      - name: Build with Maven
+        run: mvn clean install
+
+      - name: Run tests
+        run: mvn test
