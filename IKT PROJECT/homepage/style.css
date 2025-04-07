@@ -1,0 +1,326 @@
+body{
+    margin: 0;
+}
+
+.home {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+  
+   .container {
+    background-color: #ffffff;
+    overflow: hidden;
+    width: 1440px;
+    /* height: 960px;  */
+    height: 100vh;
+    position: relative;
+  } 
+  
+  .header {
+    position: absolute;
+    width: 364px;
+    height: 365px;
+    top: -29px;
+    left: 0;
+  }
+  
+  .logo-container {
+    position: absolute;
+    width: 364px;
+    height: 365px;
+    top: 0;
+    left: 0;
+  }
+  
+  .logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .upload-section {
+    position: absolute;
+    width: 576px;
+    height: 381px;
+    top: 266px;
+    left: 430px;
+  }
+  
+  .upload-container {
+    position: absolute;
+    width: 576px;
+    height: 270px;
+    top: 0;
+    left: 0;
+    background-color: #cffcfc0d;
+    border-radius: 30px;
+    border: 1px dashed;
+    border-color: #0785864c;
+  }
+  
+  .upload-area {
+    display: flex;
+    flex-direction: column;
+    width: 532px;
+    height: 184px;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    top: 42px;
+    left: 21px;
+    border-radius: 30px;
+  }
+  
+  .upload-icon {
+    position: relative;
+    width: 68.78px;
+    height: 59.59px;
+  }
+  
+  .upload-instruction {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-family: "Montserrat", Helvetica;
+    font-weight: 400;
+    color: transparent;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+  
+  .instruction-text {
+    font-weight: 600;
+    color: #454545;
+  }
+  
+  .instruction-space {
+    font-weight: 600;
+    color: #333333;
+  }
+  
+  .upload-button {
+    font-weight: 600;
+    color: #088586;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+
+  .file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin: 8px auto;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #078586;
+    border-radius: 6px;
+}
+
+.file-name-input {
+    flex-grow: 1;
+    border: none;
+    background: none;
+    font-size: 14px;
+    padding: 5px;
+    color: #333;
+}
+
+.file-name-input:focus {
+    outline: none;
+}
+
+.delete-file {
+    background: none;
+    border: none;
+    color: red;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+  
+  /* .file-formats {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-family: "Montserrat", Helvetica;
+    font-weight: 400;
+    color: #676767;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 18px;
+    white-space: nowrap;
+  } */
+  
+  .upload-status {
+    position: absolute;
+    top: 311px;
+    left: 92px;
+  }
+  
+  .status-heading {
+    font-family: "Montserrat", Helvetica;
+    font-weight: 600;
+    color: #676767;
+    font-size: 14px;
+    text-align: start;
+    /* text-align: center; */
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .file-progress {
+    position: relative;
+    width: 445px;
+    height: 37px;
+    margin-top: 16px;
+  }
+  
+  .progress-bar {
+    position: relative;
+    height: 37px;
+  }
+  
+  .progress-bar-outline {
+    position: absolute;
+    width: 445px;
+    height: 36px;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    border-radius: 4px;
+    border: 0.5px solid;
+    border-color: #e3e3e3;
+  }
+  
+  .file-name {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    font-family: "Montserrat", Helvetica;
+    font-weight: 400;
+    color: #0e0e0e;
+    font-size: 12px;
+    line-height: 18px;
+  }
+  
+  .progress-bar-fill {
+    position: absolute;
+    width: 275px;
+    height: 3px;
+    top: 34px;
+    left: 0;
+    background-color: var(--accent-color);
+    border-radius: 10px;
+  }
+  
+  .cancel-upload {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 10px;
+    left: 419px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .footer {
+    position: absolute;
+    width: 100%;
+
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(
+      to right,
+      rgba(225, 255, 187, 1) 48%,
+      rgba(0, 153, 144, 1) 96%
+    );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .copyright {
+    font-family: "Poppins", Helvetica;
+    font-weight: 700;
+    font-style: italic;
+    color: #224424;
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .branding {
+    position: absolute;
+    width: 363px;
+    height: 139px;
+    top: 127px;
+    left: 475px;
+  }
+  
+  .brand-logo {
+    position: absolute;
+    width: 250px;
+    height: 112px;
+    top: 0;
+    left: 113px;
+  }
+  
+  .brand-arrow {
+    position: absolute;
+    width: 127px;
+    height: 113px;
+    top: 26px;
+    left: 0;
+  }
+  
+  .user-info {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+  }
+  
+  .user-greeting {
+    font-family: "Poppins", Helvetica;
+    font-weight: 600;
+    color: #000000;
+    font-size: 20px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .logout-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .logout-icon {
+    width: 76px;
+    height: 76px;
+    object-fit: cover;
+  }
+  
+  /* .gramma-check {
+    cursor: pointer;
+  } */
+  
