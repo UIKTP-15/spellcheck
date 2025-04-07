@@ -1,14 +1,17 @@
 package finki_ukim.spell_check_back_end.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
 @Table(name = "app_users")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +20,6 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
-
     @OneToMany
     private List<GrammarCheck> grammarChecks;
 
@@ -28,31 +30,6 @@ public class User {
         this.password = password;
         this.grammarChecks = new ArrayList<>();
     }
-
-    public User() {
-
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public List<GrammarCheck> getGrammarChecks() {
-        return grammarChecks;
-    }
-
     public String getPassword() {
         return password;
     }
