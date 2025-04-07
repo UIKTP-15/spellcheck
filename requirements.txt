@@ -3,3 +3,4 @@ uvicorn
 gunicorn
 google-cloud-vision
 python-multipart
+futures
