@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="globals.css" />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+      <main class="home"> 
+      <div class="container">
+        <header class="header">
+          <div class="logo-container">
+            <img id="logo" src="images/logoGrammaCheck.png" alt="Logo" class="logo-image">
+          </div>
+        </header>
+        <section class="upload-section">
+          <div class="upload-container">
+            <div class="upload-area">
+              <div class="upload-icon">
+                <img src="images/upload.png" alt="">
+              </div>
+              <p class="upload-instruction">
+                <span class="instruction-text">Drag &amp; drop files or</span>
+                <span class="instruction-space">&nbsp;</span>
+                <label for="file-upload" class="upload-button">Upload</label>
+                <input type="file" id="file-upload" style="display: none;">
+              </p>
+              <p class="file-formats">Supported formats: JPEG, PNG, GIF, MP4, PDF, PSD, AI, Word, PPT</p>
+            </div>
+          </div>
+          <div class="upload-status" style="display: none;">
+            <h2 class="status-heading">Uploading</h2>
+            <div class="file-progress">
+              <div class="progress-bar">
+                <div class="progress-bar-outline"></div>
+                <div class="file-name"></div>
+                <div class="progress-bar-fill"></div>
+                <button class="cancel-upload" aria-label="Cancel upload">
+                  <img src="images/cancel.png" alt="Cancel icon" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <div class="branding">
+          <a href="#" class="gramma-check">
+            
+            <img class="brand-logo" src="images/grammacheck.png" alt="GRAMMA logo" />
+          </a>
+          
+          <img class="brand-arrow" src="images/arrow.png" alt="Brand arrow" />
+        </div>
+        <div class="user-info">
+          <p class="user-greeting">Hello, John Doe</p>
+          <a href="#" class="logout-button" aria-label="Logout">
+            <img class="logout-icon" src="images/exit 1.png" alt="Logout" />
+          </a>
+        </div>
+      </div>
+    </main>  
+    <footer class="footer">
+      <p class="copyright">© 2025 - UIKTP15</p>
+    </footer>
+    <script src="script.js">
+    </script>
+  </body>
+</html>
