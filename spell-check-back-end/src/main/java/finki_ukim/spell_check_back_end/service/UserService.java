@@ -20,11 +20,11 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    public boolean loginUser(String email, String password) {
+    public User loginUser(String email, String password) {
         User user = this.userRepository.findByEmail(email).orElseThrow(() -> new RuntimeException(String.format("User with email %s doesn't exist", email)));
         if (!user.getPassword().equals(password)) {
-            throw new RuntimeException("Passwords do not match!");
+            throw new RuntimeException("Password is incorrect.");
         }
-        return true;
+        return user;
     }
 }

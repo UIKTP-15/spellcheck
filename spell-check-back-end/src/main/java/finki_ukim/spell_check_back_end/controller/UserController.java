@@ -2,6 +2,7 @@ package finki_ukim.spell_check_back_end.controller;
 
 import finki_ukim.spell_check_back_end.model.User;
 import finki_ukim.spell_check_back_end.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,9 +48,11 @@ public class UserController {
     @PostMapping("/login")
     public String loginUser(@RequestParam(name = "email") String email,
                             @RequestParam(name = "password") String password,
-                            Model model) {
+                            Model model,
+                            HttpSession session) {
         try {
-            this.userService.loginUser(email, password);
+            User user = this.userService.loginUser(email, password);
+            session.setAttribute("user", user);
             return "home";
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
