@@ -63,7 +63,6 @@ public class ImgBBService {
 
             // Persist in db
             //return (String) correctedTextResponse.getBody().get("text");
-        }else {
         }
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
             Map<String, Object> data = (Map<String, Object>) response.getBody().get("data");

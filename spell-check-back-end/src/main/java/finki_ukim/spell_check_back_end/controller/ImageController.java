@@ -1,7 +1,6 @@
 package finki_ukim.spell_check_back_end.controller;
 
 import finki_ukim.spell_check_back_end.service.ImgBBService;
-import finki_ukim.spell_check_back_end.service.OpenAiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
