@@ -34,20 +34,4 @@ public class GrammarCheck {
     private LocalDate date;
     @OneToOne
     private ModelResponse modelResponse;
-
-    public GrammarCheck(Long id, User user, LocalDate date, ModelResponse modelResponse) {
-        this.id = id;
-        this.user = user;
-       // this.imageUrl = imageUrl;
-        this.date = date;
-        this.modelResponse = modelResponse;
-    }
-    public GrammarCheck(User user, LocalDate date) {
-        this.user = user;
-        this.date = date;
-    }
-
-    public GrammarCheck() {
-
-    }
 }
