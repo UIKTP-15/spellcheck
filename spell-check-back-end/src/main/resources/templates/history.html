@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>History</title>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <!--        <link rel="stylesheet" href="/styleguide.css" />-->
+    <!--        <link rel="stylesheet" href="/style.css" />-->
+</head>
+<body>
+<div class="history">
+    <div class="overlap">
+        <div class="overlap-group">
+            <img class="group" src="/images/logoGrammaCheck.png" alt="Logo"/>
+            <div class="list_container">
+                <div class="list">
+                    <header class="header">
+                        <div class="text-wrapper-3">Date</div>
+                        <div class="text-wrapper-4">Title</div>
+
+                    </header>
+                    <div th:each="item, iterStat : ${items}" class="task">
+                        <div class="text-wrapper-5"
+                             th:text="${item.getDate().getMonth()} + ' ' + ${item.getDate().getDayOfMonth()}"></div>
+                        <div class="text-wrapper-6" th:text="${item.getName()}"></div>
+
+                        <div class="div-3"></div>
+                        <div class="more-horizontal-wrapper">
+                            <a href="javascript:void(0);" onclick="buttonShow(event)">
+                                <img class="dots-img" src="/images/dots.png" alt="More options">
+                            </a>
+                            <button class="button" style="display:none; background-color: #009990;">
+                                <a th:href="@{/history/save/{id}(id=${item.id})}">Save</a>
+                            </button>
+                            <button class="button" style="display:none; background-color: #7F56D9;"
+                                    th:onclick="'openRenameDialog(' + ${item.id} + ')'">Edit
+                            </button>
+                            <button type="button" class="button" style="display:none; background-color: #D92D20;"
+                                    th:onclick="'openDeleteDialog(' + ${item.id} + ')'">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="text-wrapper-7">History</div>
+    </div>
+
+    <div class="frame">
+        <div class="text-wrapper-8"
+             th:text="${'Hello, ' + session.user.getFirstName() + ' ' + session.user.getLastName()}"></div>
+        <img class="exit" src="/images/exit.png" alt="Logout"/>
+    </div>
+</div>
+
+<div id="deleteDialog" title="Confirm Deletion" style="display:none; position: fixed;">
+    <span id="closeDeleteDialog"
+          style="cursor:pointer; position: absolute; color: gray; top: 10px; right: 10px; font-size: 20px; font-weight: bold; z-index: 10;">X</span>
+    <h2>Delete this file</h2>
+    <br>
+    <p>Are you sure you want to delete this file?
+        <br>
+        <small>This action cannot be undone.</small>
+    </p>
+    <button id="confirmDelete" style="background-color: #D92D20; color: white; margin-top: 10px;">Delete</button>
+</div>
+
+<div id="renameDialog" title="Rename this file"
+     style="display:none; position: fixed; border-radius: 30px; width: 300px;padding: 20px;">
+    <span id="closeDialog"
+          style="cursor:pointer; color: gray; position: absolute; top: 10px; right: 10px; font-size: 20px; font-weight: bold; z-index: 10;">X</span>
+    <label for="newFileName">Rename this file</label>
+    <input type="text" id="newFileName" name="newFileName" placeholder="e.g NewDocument1">
+    <button id="confirmRename" style="margin-top: 10px;">Confirm</button>
+</div>
+
+
+<footer class="footer">
+    <div class="copyright">© 2025 - UIKTP15</div>
+</footer>
+<script>
+    let currentDeleteId = null;
+    let currentRenameId = null;
+
+    function openDeleteDialog(id) {
+        currentDeleteId = id;
+        document.getElementById('deleteDialog').style.display = 'block';
+    }
+
+    function openRenameDialog(id) {
+        currentRenameId = id;
+        document.getElementById('renameDialog').style.display = 'block';
+    }
+
+    document.getElementById('closeDeleteDialog').addEventListener('click', function () {
+        document.getElementById('deleteDialog').style.display = 'none';
+        currentDeleteId = null;
+    });
+
+    document.getElementById('closeDialog').addEventListener('click', function () {
+        document.getElementById('renameDialog').style.display = 'none';
+        currentRenameId = null;
+    });
+
+    document.getElementById('confirmDelete').addEventListener('click', function () {
+        if (currentDeleteId !== null) {
+            fetch(`/history/delete/${currentDeleteId}`, {
+                method: "DELETE"
+            }).then(response => {
+                document.getElementById('deleteDialog').style.display = 'none';
+                window.location.href = '/history';
+            })
+        }
+    });
+
+    document.getElementById('confirmRename').addEventListener('click', function () {
+        if (currentRenameId !== null) {
+            const newName = document.getElementById('newFileName').value.trim();
+            if (newName.length > 0) {
+                fetch(`/history/update/${currentRenameId}?newName=${encodeURIComponent(newName)}`, {
+                    method: "PUT"
+                }).then(response => {
+                    document.getElementById('renameDialog').style.display = 'none';
+                    window.location.href = '/history';
+                });
+            } else {
+                alert("Please enter a valid name.");
+            }
+        }
+    });
+</script>
+<script src="/js/scripts.js">
+
+</script>
+</body>
+</html>

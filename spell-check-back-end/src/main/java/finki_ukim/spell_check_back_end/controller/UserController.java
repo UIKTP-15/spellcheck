@@ -53,7 +53,7 @@ public class UserController {
         try {
             User user = this.userService.loginUser(email, password);
             session.setAttribute("user", user);
-            return "home";
+            return "redirect:/home/upload";
         } catch (RuntimeException e) {
             model.addAttribute("error", e.getMessage());
             return "login";

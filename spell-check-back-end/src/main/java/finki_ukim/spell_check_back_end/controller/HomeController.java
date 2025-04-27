@@ -11,4 +11,9 @@ public class HomeController {
     public String getHomePage() {
         return "entry_page";
     }
+
+    @GetMapping("/upload")
+    public String getUploadPage() {
+        return "home";
+    }
 }

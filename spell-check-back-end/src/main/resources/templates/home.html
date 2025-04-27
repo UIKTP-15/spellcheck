@@ -1,29 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/home.css"/>
 </head>
 <body>
-<h1>Upload Images</h1>
+<main class="home">
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <img id="logo" src="/images/logoGrammaCheck.png" alt="Logo" class="logo-image">
+            </div>
+        </header>
 
-<form th:action="@{/images/upload}" method="post" enctype="multipart/form-data">
-    <input type="file" name="images" multiple required>
-    <button type="submit">Upload</button>
-</form>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <section class="upload-section">
+                <div class="upload-container">
+                    <div class="upload-area">
+                        <div class="upload-icon">
+                            <img src="/images/upload.png" alt="">
+                        </div>
+                        <p class="upload-instruction">
+                            <span class="instruction-text">Drag &amp; drop files or</span>
+                            <span class="instruction-space">&nbsp;</span>
+                            <label for="file-upload" class="upload-button">Upload</label>
+                        </p>
+                        <input type="file" id="file-upload" name="files" multiple style="display: none;">
+                        <p class="file-formats">Supported formats: JPEG, PNG, GIF, MP4, PDF, PSD, AI, Word, PPT</p>
+                    </div>
+                </div>
 
-<div th:if="${imageUrls}">
-    <h3>Uploaded Images:</h3>
-    <ul style="list-style-type: none;">
-        <li th:each="url : ${imageUrls}">
-            <img th:src="${url}" alt="Uploaded Image" width="200"/>
-        </li>
-    </ul>
-</div>
+                <div class="upload-status" style="display: none;">
+                    <h2 class="status-heading">Uploading</h2>
+                    <div class="file-progress">
+                        <div class="progress-bar">
+                            <div class="progress-bar-outline"></div>
+                            <div class="file-name"></div>
+                            <div class="progress-bar-fill"></div>
+                            <button type="button" class="cancel-upload" aria-label="Cancel upload">
+                                <img src="/images/cancel.png" alt="Cancel icon"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="check-grammar-button" style="margin-top: 100px;">Check Grammar</button>
+            </section>
+        </form>
 
-<div th:if="${error}">
-    <p th:text="${error}" style="color:red;"></p>
-</div>
+        <div class="branding">
+            <a href="#" class="gramma-check">
+                <img class="brand-logo" src="/images/grammacheck.png" alt="GRAMMA logo"/>
+            </a>
+            <img class="brand-arrow" src="/images/arrow.png" alt="Brand arrow"/>
+        </div>
+        <div class="user-info">
+            <p class="user-greeting"
+               th:text="'Hello, ' + ${session.user.getFirstName() + ' ' + session.user.getLastName()}">Hello, John
+                Doe</p>
+            <a href="#" class="logout-button" aria-label="Logout">
+                <img class="logout-icon" src="/images/exit%201.png" alt="Logout"/>
+            </a>
+        </div>
+    </div>
+</main>
 
+<footer class="footer">
+    <p class="copyright">© 2025 - UIKTP15</p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const fileUpload = document.getElementById('file-upload');
+        const uploadStatus = document.querySelector('.upload-status');
+        const fileName = document.querySelector('.file-name');
+        const cancelUpload = document.querySelector('.cancel-upload');
+        const uploadButton = document.querySelector('.upload-button');
+        const progressBarFill = document.querySelector('.progress-bar-fill');
+        const checkGrammarButton = document.querySelector('.check-grammar-button');
+
+        let selectedFiles = [];
+
+        // Initially disable the button
+        checkGrammarButton.disabled = true;
+
+        uploadButton.addEventListener('click', function () {
+            fileUpload.click();
+        });
+
+        fileUpload.addEventListener('change', function (e) {
+            selectedFiles = Array.from(e.target.files);
+            if (selectedFiles.length > 0) {
+                uploadStatus.style.display = 'block';
+                fileName.textContent = selectedFiles.map(f => f.name).join(', ');
+                simulateUpload();
+            }
+            // Enable the button when a file is selected
+            checkGrammarButton.disabled = false;
+        });
+
+        cancelUpload.addEventListener('click', function () {
+            uploadStatus.style.display = 'none';
+            fileUpload.value = '';
+            progressBarFill.style.width = '0%';
+            selectedFiles = [];
+            checkGrammarButton.style.display = 'none';
+            checkGrammarButton.disabled = true;
+        });
+
+        function simulateUpload() {
+            let progress = 0;
+            progressBarFill.style.width = '0%';
+            progressBarFill.style.backgroundColor = 'rgba(8, 133, 134, 1)';
+
+            const interval = setInterval(function () {
+                if (progress >= 100) {
+                    clearInterval(interval);
+                } else {
+                    progress += 10;
+                    progressBarFill.style.width = progress + '%';
+                }
+            }, 200);
+        }
+
+        document.getElementById('uploadForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            console.log('here');
+            if (selectedFiles.length === 0) {
+                alert('Please select a file.');
+                return;
+            }
+
+            const formData = new FormData();
+            selectedFiles.forEach(file => {
+                formData.append('files', file);
+            });
+
+            fetch('http://localhost:8000/detect-text', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.text();
+                    }
+                    throw new Error('Upload failed.');
+                })
+                .then(result => {
+                    alert('Grammar check submitted successfully!\n' + result);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error submitting files.');
+                });
+        });
+
+    });
+</script>
 </body>
 </html>
