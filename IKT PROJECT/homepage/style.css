@@ -511,7 +511,7 @@ body {
   }
 
   .footer {
-    position: static;
+    position: fixed;
     width: 100%;
     margin-top: auto;
     padding: 10px 0;

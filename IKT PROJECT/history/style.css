@@ -5,7 +5,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -106,19 +107,21 @@ a {
   width: 1028px;
   height: 504px;
 }
+
 .history .list {
   margin-top: -50px;
   margin-left: 30px;
   display: flex;
   flex-direction: column;
   width: 1028px;
-  height: 250px; 
+  height: 250px;
   align-items: flex-start;
   position: absolute;
   top: 316px;
   left: 298px;
-  overflow-y: auto; 
+  overflow-y: auto;
 }
+
 .history .list li {
   margin: 20px 20px;
 }
@@ -171,7 +174,7 @@ a {
 
 .history .more-horizontal-wrapper {
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   align-items: center;
   margin-right: 30px;
 }
@@ -189,7 +192,7 @@ a {
 
 .history .div-3 {
   height: 28px;
-  
+
 }
 
 .history .pill {
@@ -208,6 +211,7 @@ a {
   flex: 1;
   height: 24px;
 }
+
 .history .more-horizontal-wrapper img {
   justify-content: flex-end;
 }
@@ -301,12 +305,14 @@ a {
   font-size: 30px;
   text-align: center;
 }
+
 button {
   margin: 15px 10px;
 }
+
 #closeDialog {
   font-size: 20px;
-  color: #D92D20; 
+  color: #D92D20;
   font-weight: bold;
   cursor: pointer;
   position: absolute;
@@ -329,7 +335,7 @@ button {
   border: 1px solid #ccc;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 1000; 
+  z-index: 1000;
   width: 300px;
   text-align: center;
   border-radius: 30px;
@@ -381,13 +387,15 @@ button {
   text-align: center;
   border-radius: 30px;
 }
+
 #deleteDialog h2 {
   font-weight: 600;
   margin-left: -130px;
   font-size: 20px;
   font-weight: 700;
 }
-#deleteDialog p{
+
+#deleteDialog p {
   font-size: 15px;
 }
 
@@ -405,11 +413,11 @@ button {
 }
 
 #deleteDialog #confirmDelete {
-  background-color: #D92D20; 
+  background-color: #D92D20;
 }
 
 #deleteDialog #cancelDelete {
-  background-color: #888; 
+  background-color: #888;
 }
 
 .footer {
@@ -418,11 +426,9 @@ button {
   height: 95px;
   bottom: 0;
   left: 0;
-  background: linear-gradient(
-    to right,
-    rgba(225, 255, 187, 1) 48%,
-    rgba(0, 153, 144, 1) 96%
-  );
+  background: linear-gradient(to right,
+      rgba(225, 255, 187, 1) 48%,
+      rgba(0, 153, 144, 1) 96%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -492,4 +498,171 @@ button {
   width: 76px;
   height: 76px;
   object-fit: cover;
+}
+
+@media only screen and (max-width: 600px) {
+  .history {
+    flex-direction: column;
+    overflow-y: auto;
+    min-height: 100vh;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  .history .container {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    padding: 0 0 100px 0;
+    position: static;
+    overflow: visible;
+  }
+
+  img.group {
+    width: 48px !important;
+    height: auto !important;
+    max-width: 50vw !important;
+    display: block;
+    margin: 10px auto !important;
+  }
+
+  .history .overlap,
+  .history .overlap-group,
+  .history .group,
+  .history .frame {
+    position: static !important;
+    width: 100% !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 0 auto;
+    max-width: 350px;
+  }
+
+  .frame {
+    padding-left: 15%;
+  }
+
+  .branding {
+    position: static;
+    width: 100%;
+    height: auto;
+    margin: 20px 0;
+    top: auto;
+    left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .brand-logo,
+  .brand-arrow {
+    position: static;
+    width: 80px;
+    height: auto;
+    margin: 0 10px;
+  }
+
+  .user-info {
+    position: static;
+    margin: 10px 0;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .user-greeting {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .logout-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .history .text-wrapper-7 {
+    position: static;
+    font-size: 24px;
+    white-space: normal;
+    margin: 20px 0 10px 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .history .header {
+    flex-direction: row;
+    gap: 10px;
+    height: auto;
+    padding: 0 10px;
+  }
+
+  .history .list_container,
+  .history .list {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    position: static;
+    margin: 0;
+    padding: 0 10px;
+    overflow-x: auto;
+  }
+
+  .history .list li {
+    margin: 10px 0;
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .history .task {
+    flex-direction: row;
+    gap: 10px;
+    height: auto;
+    min-height: 56px;
+    font-size: 15px;
+  }
+
+  .history .text-wrapper-4,
+  .history .text-wrapper-6 {
+    width: 60vw;
+    font-size: 15px;
+  }
+
+  .history .more-horizontal-wrapper {
+    margin-right: 0;
+    justify-content: flex-end;
+    flex: none;
+  }
+
+  .footer {
+    position: relative;
+    height: 80px;
+    min-height: 60px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 0;
+  }
+
+  .copyright {
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .history .list_container {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .history .container {
+    padding-bottom: 100px;
+  }
+
 }
