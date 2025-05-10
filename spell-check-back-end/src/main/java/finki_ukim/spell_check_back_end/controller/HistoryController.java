@@ -43,4 +43,21 @@ public class HistoryController {
         this.grammarCheckService.deleteItem(id);
         return "redirect:/history";
     }
+    @PutMapping("/toggle-flag/{id}")
+    public ResponseEntity<?> toggleFlag(@PathVariable Long id) {
+        try {
+            grammarCheckService.toggleFlag(id);
+            return ResponseEntity.ok("Flag toggled");
+        } catch (RuntimeException ex) {
+            return ResponseEntity.badRequest().body(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/flagged")
+    public String findFlaggedByUser(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        List<GrammarCheck> flaggedChecks = grammarCheckService.findFlaggedByUser(user);
+        model.addAttribute("items", flaggedChecks);
+        return "history";
+    }
 }

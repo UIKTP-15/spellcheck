@@ -33,4 +33,12 @@ public class GrammarCheck {
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "model_response_id") // this creates the FK column
     private ModelResponse modelResponse;
+
+    public boolean isFlagged() {
+        return flagged;
+    }
+
+    public void setFlagged(boolean flagged) {
+        this.flagged = flagged;
+    }
 }

@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface GrammarCheckRepository extends JpaRepository<GrammarCheck, Long> {
     List<GrammarCheck> findAllByUser(User user);
+    List<GrammarCheck> findAllByFlaggedTrue();
+    List<GrammarCheck> findAllByUserAndFlaggedTrue(User user);
 }
