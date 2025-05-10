@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Export to PDF</title>
+</head>
+<body>
+<h1>Export Corrected Text to PDF</h1>
+<form th:action="@{/export/pdf}" method="post">
+    <textarea name="text" rows="10" cols="50"
+              placeholder="Paste your corrected text here"></textarea><br/>
+    <button type="submit">Download PDF</button>
+</form>
+</body>
+</html>
