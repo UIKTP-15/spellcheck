@@ -4,11 +4,13 @@ import finki_ukim.spell_check_back_end.model.GrammarCheck;
 import finki_ukim.spell_check_back_end.model.User;
 import finki_ukim.spell_check_back_end.service.GrammarCheckService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -21,9 +23,14 @@ public class HistoryController {
     }
 
     @GetMapping
-    public String findAllByUser(HttpSession session, Model model) {
+    public String findAllByUser(@RequestParam(name = "from", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate from,
+                                @RequestParam(name = "to", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate to,
+                                @RequestParam(name = "nameSearch", required = false) String nameSearch,
+                                @RequestParam(name = "flagged", required = false) Boolean flagged,
+                                HttpSession session,
+                                Model model) {
         User user = (User) session.getAttribute("user");
-        List<GrammarCheck> grammarChecksByUser = grammarCheckService.findAllByUser(user);
+        List<GrammarCheck> grammarChecksByUser = grammarCheckService.findAllByUserFiltered(user, from, to, nameSearch, flagged);
         model.addAttribute("items", grammarChecksByUser);
         return "history";
     }

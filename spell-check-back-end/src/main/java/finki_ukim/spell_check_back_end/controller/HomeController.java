@@ -5,14 +5,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping({"/", "/home"})
+@RequestMapping("/")
 public class HomeController {
     @GetMapping
+    public String redirectToEntry() {
+        return "redirect:/entry";
+    }
+
+    @GetMapping("/entry")
     public String getHomePage() {
         return "entry_page";
     }
 
-    @GetMapping("/upload")
+    @GetMapping("/home/upload")
     public String getUploadPage() {
         return "home";
     }

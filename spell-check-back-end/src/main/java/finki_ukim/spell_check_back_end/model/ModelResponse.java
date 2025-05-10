@@ -1,6 +1,9 @@
 package finki_ukim.spell_check_back_end.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +20,4 @@ public class ModelResponse {
     private Long id;
     private String userText;
     private String correctedText;
-    @OneToOne(mappedBy = "modelResponse", cascade = CascadeType.ALL)
-    private GrammarCheck grammarCheck;
 }

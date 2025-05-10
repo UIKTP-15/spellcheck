@@ -29,8 +29,13 @@ public class GrammarCheck {
     private List<Image> images;
 
     private LocalDate date;
+    private Boolean flagged;
 
     @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "model_response_id") // this creates the FK column
+    @JoinColumn(name = "model_response_id")
     private ModelResponse modelResponse;
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

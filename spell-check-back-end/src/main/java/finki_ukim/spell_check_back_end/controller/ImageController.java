@@ -1,7 +1,6 @@
 package finki_ukim.spell_check_back_end.controller;
 
 import finki_ukim.spell_check_back_end.service.ImgBBService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
+// @RequiredArgsConstructor
 @RequestMapping("/images")
 public class ImageController {
 
     private final ImgBBService imgBBService;
+
+    public ImageController(ImgBBService imgBBService) {
+        this.imgBBService = imgBBService;
+    }
 
     @GetMapping
     public String redirectToUpload() {
