@@ -12,9 +12,8 @@ public class Image {
     @ManyToOne
     private GrammarCheck grammarCheck;
 
-    public Image(String imageUrl, GrammarCheck grammarCheck) {
+    public Image(String imageUrl) {
         this.imageUrl = imageUrl;
-        this.grammarCheck = grammarCheck;
     }
 
     public Image() {}

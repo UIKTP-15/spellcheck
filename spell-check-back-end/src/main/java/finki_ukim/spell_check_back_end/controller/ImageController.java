@@ -1,19 +1,15 @@
 package finki_ukim.spell_check_back_end.controller;
 
+import finki_ukim.spell_check_back_end.model.User;
 import finki_ukim.spell_check_back_end.service.ImgBBService;
-import org.springframework.stereotype.Controller;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Controller
 // @RequiredArgsConstructor
+@RestController
 @RequestMapping("/images")
 public class ImageController {
 
@@ -34,21 +30,12 @@ public class ImageController {
     }
 
     @PostMapping("/upload")
-    public String uploadImages(@RequestParam("images") MultipartFile[] files,
-                               Model model) {
-
-        List<String> imageUrls = new ArrayList<>();
-
+    public ResponseEntity<?> uploadImages(@RequestParam("images") MultipartFile[] files, HttpSession session) {
         try {
-            for (MultipartFile file : files) {
-                String imageUrl = imgBBService.uploadImage(file);
-                imageUrls.add(imageUrl);
-            }
-            model.addAttribute("imageUrls", imageUrls);
-            return "home";
+            imgBBService.uploadImage(files, (User) session.getAttribute("user"));
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
-            model.addAttribute("error", "Image upload failed: " + e.getMessage());
-            return "home";
+            return ResponseEntity.badRequest().build();
         }
     }
 }

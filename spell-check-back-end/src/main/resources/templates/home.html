@@ -15,7 +15,7 @@
             </div>
         </header>
 
-        <form id="uploadForm" enctype="multipart/form-data">
+        <form id="uploadForm" method="post" enctype="multipart/form-data">
             <section class="upload-section">
                 <div class="upload-container">
                     <div class="upload-area">
@@ -25,9 +25,9 @@
                         <p class="upload-instruction">
                             <span class="instruction-text">Drag &amp; drop files or</span>
                             <span class="instruction-space">&nbsp;</span>
-                            <label for="file-upload" class="upload-button">Upload</label>
+                            <span class="upload-button">Upload</span>
                         </p>
-                        <input type="file" id="file-upload" name="files" multiple style="display: none;">
+                        <input type="file" id="file-upload" name="images" multiple style="display: none;">
                         <p class="file-formats">Supported formats: JPEG, PNG, GIF, MP4, PDF, PSD, AI, Word, PPT</p>
                     </div>
                 </div>
@@ -134,21 +134,17 @@
 
             const formData = new FormData();
             selectedFiles.forEach(file => {
-                formData.append('files', file);
+                formData.append('images', file);
             });
 
-            fetch('http://localhost:8000/detect-text', {
+            fetch('http://localhost:8080/images/upload', {
                 method: 'POST',
                 body: formData,
             })
                 .then(response => {
                     if (response.ok) {
-                        return response.text();
+                        window.location.href= '/history';
                     }
-                    throw new Error('Upload failed.');
-                })
-                .then(result => {
-                    alert('Grammar check submitted successfully!\n' + result);
                 })
                 .catch(error => {
                     console.error('Error:', error);

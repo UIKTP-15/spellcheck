@@ -5,8 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.io.IOException;
 
@@ -21,10 +20,10 @@ public class ExportController {
         return "export-form";
     }
 
-    @PostMapping("/export/pdf")
-    public void exportPdf(@RequestParam("text") String correctedText,
+    @GetMapping("/export/pdf/{id}")
+    public void exportPdf(@PathVariable Long id,
                           HttpServletResponse response) throws IOException {
-        byte[] pdfBytes = exportService.generatePdf(correctedText);
+        byte[] pdfBytes = exportService.generatePdf(id);
 
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition",

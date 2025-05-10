@@ -12,9 +12,7 @@ import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class GrammarCheck {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +29,11 @@ public class GrammarCheck {
     private LocalDate date;
     private Boolean flagged;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "model_response_id")
-    private ModelResponse modelResponse;
+    @Column(length = 5000)
+    private String inputText;
+
+    @Column(length = 5000)
+    private String correctedText;
 
     public void setName(String name) {
         this.name = name;

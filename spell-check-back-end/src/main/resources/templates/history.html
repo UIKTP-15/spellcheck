@@ -51,7 +51,7 @@
                                 <img class="dots-img" src="/images/dots.png" alt="More options">
                             </a>
                             <button class="button" style="display:none; background-color: #009990;">
-                                <a th:href="@{/history/save/{id}(id=${item.id})}">Save</a>
+                                <a th:href="@{/export/pdf/{id}(id=${item.id})}">Export</a>
                             </button>
                             <button class="button" style="display:none; background-color: #7F56D9;"
                                     th:onclick="'openRenameDialog(' + ${item.id} + ')'">Edit
