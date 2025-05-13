@@ -56,5 +56,13 @@ public class GrammarCheckService {
         item.setName(newName);
         grammarCheckRepository.save(item);
     }
+
+    public void toggleFlag(Long id) {
+        GrammarCheck check = grammarCheckRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Not found"));
+
+        check.setFlagged(!check.getFlagged());
+        grammarCheckRepository.save(check);
+    }
 }
 

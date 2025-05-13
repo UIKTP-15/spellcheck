@@ -70,12 +70,12 @@ public class ImgBBService {
                     String correctedText = openAiService.correctText((String) modelsTextResponse.getBody().get("text"));
                     System.out.println("Corrected text: " + correctedText);
 
-                    if(grammarCheck.getInputText()==null){
+                    if (grammarCheck.getInputText() == null) {
                         grammarCheck.setInputText("");
                         grammarCheck.setCorrectedText("");
                     }
-                    grammarCheck.setInputText(grammarCheck.getInputText()+ modelsResponse);
-                    grammarCheck.setCorrectedText(grammarCheck.getCorrectedText()+ correctedText);
+                    grammarCheck.setInputText(grammarCheck.getInputText() + modelsResponse);
+                    grammarCheck.setCorrectedText(grammarCheck.getCorrectedText() + correctedText);
                 }
                 if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
                     Map<String, Object> data = (Map<String, Object>) response.getBody().get("data");

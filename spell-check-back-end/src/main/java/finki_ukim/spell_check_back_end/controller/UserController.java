@@ -63,6 +63,6 @@ public class UserController {
     @GetMapping("/logout")
     public String logoutUser(HttpSession session) {
         session.removeAttribute("user");
-        return "redirect:/home";
+        return "redirect:/entry";
     }
 }

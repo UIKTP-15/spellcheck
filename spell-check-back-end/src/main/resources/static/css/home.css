@@ -15,7 +15,6 @@ body {
     background-color: #ffffff;
     overflow: hidden;
     width: 1440px;
-    /* height: 960px;  */
     height: 100vh;
     position: relative;
 }
@@ -45,17 +44,15 @@ body {
 .upload-section {
     position: absolute;
     width: 576px;
-    height: 381px;
     top: 266px;
     left: 430px;
+    display: flex;
+    flex-direction: column;
 }
 
 .upload-container {
-    position: absolute;
     width: 576px;
     height: 270px;
-    top: 0;
-    left: 0;
     background-color: #cffcfc0d;
     border-radius: 30px;
     border: 1px dashed;
@@ -115,6 +112,38 @@ body {
     padding: 0;
 }
 
+.history-container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.history {
+    font-family: "Montserrat", Helvetica;
+    font-weight: 400;
+    color: #454545;
+    font-size: 14px;
+    text-align: center;
+    margin: 0;
+}
+
+.file-formats {
+    font-family: "Montserrat", Helvetica;
+    font-weight: 400;
+    color: #45454580;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.click_me {
+    color: #088586;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.click_me:hover {
+    color: #066e6f;
+}
 
 .file-item {
     display: flex;
@@ -149,25 +178,10 @@ body {
     cursor: pointer;
 }
 
-
-/* .file-formats {
-  position: relative;
-  width: fit-content;
-  margin-top: -1.00px;
-  font-family: "Montserrat", Helvetica;
-  font-weight: 400;
-  color: #676767;
-  font-size: 12px;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: 18px;
-  white-space: nowrap;
-} */
-
 .upload-status {
-    position: absolute;
-    top: 311px;
-    left: 92px;
+    margin-top: 20px;
+    margin-left: 10%;
+    width: 100%;
 }
 
 .status-heading {
@@ -176,7 +190,6 @@ body {
     color: #676767;
     font-size: 14px;
     text-align: start;
-    /* text-align: center; */
     letter-spacing: 0;
     line-height: normal;
 }
@@ -222,7 +235,7 @@ body {
     height: 3px;
     top: 34px;
     left: 0;
-    background-color: var(--accent-color);
+    background-color: rgba(8, 133, 134, 1);
     border-radius: 10px;
 }
 
@@ -241,7 +254,6 @@ body {
 .footer {
     position: absolute;
     width: 100%;
-
     bottom: 0;
     left: 0;
     background: linear-gradient(
@@ -320,6 +332,12 @@ body {
     object-fit: cover;
 }
 
-/* .gramma-check {
-  cursor: pointer;
-} */
+.check-grammar-button {
+    margin-top: 5%;
+    margin-left: 40%;
+    padding: 10px;
+    color: #088586;
+    border-radius: 10px;
+    background-color: white;
+    font-weight: bold;
+}

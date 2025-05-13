@@ -28,8 +28,14 @@
                             <span class="upload-button">Upload</span>
                         </p>
                         <input type="file" id="file-upload" name="images" multiple style="display: none;">
-                        <p class="file-formats">Supported formats: JPEG, PNG, GIF, MP4, PDF, PSD, AI, Word, PPT</p>
+                        <p class="file-formats">Supported formats: JPEG, PNG, WEBP</p>
                     </div>
+                </div>
+
+                <div class="history-container">
+                    <p class="history">If you would like to view your document history, <a href="/history"
+                                                                                           class="click_me">Click
+                        here</a>.</p>
                 </div>
 
                 <div class="upload-status" style="display: none;">
@@ -43,9 +49,9 @@
                                 <img src="/images/cancel.png" alt="Cancel icon"/>
                             </button>
                         </div>
+                        <button type="submit" class="check-grammar-button">Check Grammar</button>
                     </div>
                 </div>
-                <button type="submit" class="check-grammar-button" style="margin-top: 100px;">Check Grammar</button>
             </section>
         </form>
 
@@ -59,7 +65,7 @@
             <p class="user-greeting"
                th:text="'Hello, ' + ${session.user.getFirstName() + ' ' + session.user.getLastName()}">Hello, John
                 Doe</p>
-            <a href="#" class="logout-button" aria-label="Logout">
+            <a href="/users/logout" class="logout-button" aria-label="Logout">
                 <img class="logout-icon" src="/images/exit%201.png" alt="Logout"/>
             </a>
         </div>
@@ -82,7 +88,6 @@
 
         let selectedFiles = [];
 
-        // Initially disable the button
         checkGrammarButton.disabled = true;
 
         uploadButton.addEventListener('click', function () {
@@ -96,7 +101,6 @@
                 fileName.textContent = selectedFiles.map(f => f.name).join(', ');
                 simulateUpload();
             }
-            // Enable the button when a file is selected
             checkGrammarButton.disabled = false;
         });
 
@@ -143,7 +147,7 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        window.location.href= '/history';
+                        window.location.href = '/history';
                     }
                 })
                 .catch(error => {
@@ -151,7 +155,6 @@
                     alert('Error submitting files.');
                 });
         });
-
     });
 </script>
 </body>

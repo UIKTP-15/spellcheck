@@ -32,6 +32,18 @@ public class HistoryController {
         User user = (User) session.getAttribute("user");
         List<GrammarCheck> grammarChecksByUser = grammarCheckService.findAllByUserFiltered(user, from, to, nameSearch, flagged);
         model.addAttribute("items", grammarChecksByUser);
+        if (from != null) {
+            model.addAttribute("from", from);
+        }
+        if (to != null) {
+            model.addAttribute("to", to);
+        }
+        if (nameSearch != null) {
+            model.addAttribute("nameSearch", nameSearch);
+        }
+        if (flagged != null) {
+            model.addAttribute("flagged", flagged);
+        }
         return "history";
     }
 
@@ -48,6 +60,16 @@ public class HistoryController {
     @DeleteMapping("/delete/{id}")
     public String deleteItem(@PathVariable Long id) {
         this.grammarCheckService.deleteItem(id);
+        return "redirect:/history";
+    }
+
+    @GetMapping("/mark-as-flagged/{id}")
+    public String markAsFlagged(@PathVariable Long id) {
+        try {
+            this.grammarCheckService.toggleFlag(id);
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
+        }
         return "redirect:/history";
     }
 }

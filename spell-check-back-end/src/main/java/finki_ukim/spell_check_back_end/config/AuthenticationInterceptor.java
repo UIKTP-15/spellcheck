@@ -10,7 +10,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String path = request.getRequestURI();
-        boolean isPublicPath = path.contains("/users/login") || path.contains("/users/register");
+        boolean isPublicPath = path.contains("/users/login") || path.contains("/users/register") || (path.equals("/")) || path.contains("/entry");
 
         if (isPublicPath) {
             return true;
