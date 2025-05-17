@@ -33,60 +33,67 @@
 
         <h1 class="page-title">History</h1>
 
-        <div class="filter-container">
-            <form method="get" action="/history">
-                <label for="from">From:</label>
-                <input type="date" id="from" name="from" th:value="${from}">
+        <div class="item-container">
+            <div class="filter-container">
+                <form method="get" action="/history">
+                    <label for="from">From:</label>
+                    <input type="date" id="from" name="from" th:value="${from}">
 
-                <label for="to">To:</label>
-                <input type="date" id="to" name="to" th:value="${to}">
+                    <label for="to">To:</label>
+                    <input type="date" id="to" name="to" th:value="${to}">
 
-                <label for="nameSearch">Name:</label>
-                <input type="text" id="nameSearch" name="nameSearch" placeholder="e.g Document"
-                       th:value="${nameSearch}">
+                    <label for="nameSearch">Name:</label>
+                    <input type="text" id="nameSearch" name="nameSearch" placeholder="e.g Document"
+                           th:value="${nameSearch}">
 
-                <label for="flagged">
-                    <input type="checkbox" id="flagged" name="flagged" th:checked="${flagged != null && flagged}"> Is
-                    flagged
-                </label>
+                    <label for="flagged">
+                        <input type="checkbox" id="flagged" name="flagged" th:checked="${flagged != null && flagged}">
+                        Is
+                        flagged
+                    </label>
 
-                <button type="submit" class="filter-btn">Filter</button>
-            </form>
-        </div>
+                    <button type="submit" class="filter-btn">Filter</button>
+                </form>
+            </div>
 
-        <div class="list-container">
-            <div class="list">
-                <header class="list-header">
-                    <div class="header-date">Date</div>
-                    <div class="header-title">Title</div>
-                    <div class="header-flagged">Flagged</div>
-                </header>
-                <div th:each="item: ${items}" class="list-item">
-                    <div class="item-date"
-                         th:text="${item.getDate().getMonth()} + ' ' + ${item.getDate().getDayOfMonth() + ' ' + item.getDate().getYear()}"></div>
-                    <div class="item-title" th:text="${item.getName()}"></div>
-                    <div class="item-flagged" th:text="${item.getFlagged()? '✅' : '❌'}"></div>
+            <div class="list-container">
+                <div class="list">
+                    <header class="list-header">
+                        <div class="header-date">Date</div>
+                        <div class="header-title">Title</div>
+                        <div class="header-flagged">Flagged</div>
+                    </header>
+                    <div th:each="item: ${items}" class="list-item">
+                        <div class="item-date"
+                             th:text="${item.getDate().getMonth()} + ' ' + ${item.getDate().getDayOfMonth() + ' ' + item.getDate().getYear()}"></div>
+                        <div class="item-title" th:text="${item.getName()}"></div>
+                        <div class="item-flagged" th:text="${item.getFlagged()? '✅' : '❌'}"></div>
 
-                    <div class="item-actions">
-                        <a href="javascript:void(0);" onclick="buttonShow(event)">
-                            <img class="dots-img" src="/images/dots.png" alt="More options">
-                        </a>
-                        <button class="action-button" style="display: none; background-color: #4a90e2">
-                            <a th:href="@{/history/mark-as-flagged/{id}(id=${item.id})}"
-                               th:text="${item.getFlagged() ? 'Unflag' : 'Flag'}">
-                                Flag
+                        <div class="item-actions">
+                            <a href="javascript:void(0);" onclick="buttonShow(event)">
+                                <img class="dots-img" src="/images/dots.png" alt="More options">
                             </a>
-                        </button>
-                        <button class="action-button" style="display:none; background-color: #009990;">
-                            <a th:href="@{/export/pdf/{id}(id=${item.id})}">Export</a>
-                        </button>
-                        <button class="action-button" style="display:none; background-color: #7F56D9;"
-                                th:onclick="'openRenameDialog(' + ${item.id} + ')'">Edit
-                        </button>
-                        <button type="button" class="action-button" style="display:none; background-color: #D92D20;"
-                                th:onclick="'openDeleteDialog(' + ${item.id} + ')'">
-                            Delete
-                        </button>
+                            <button class="action-button" style="display: none; background-color: #4a90e2">
+                                <a th:href="@{/history/mark-as-flagged/{id}(id=${item.id})}"
+                                   th:text="${item.getFlagged() ? 'Unflag' : 'Flag'}">
+                                    Flag
+                                </a>
+                            </button>
+                            <button class="action-button" style="display:none; background-color: #009990;">
+                                <a th:href="@{/export-pdf-differences/{id}(id=${item.id})}">Export With Differences</a>
+                            </button>
+                            <button class="action-button" style="display:none; background-color: #d5ce2c;">
+                                <a th:href="@{/export-pdf-no-differences/{id}(id=${item.id})}">Export Without
+                                    Differences</a>
+                            </button>
+                            <button class="action-button" style="display:none; background-color: #7F56D9;"
+                                    th:onclick="'openRenameDialog(' + ${item.id} + ')'">Edit
+                            </button>
+                            <button type="button" class="action-button" style="display:none; background-color: #D92D20;"
+                                    th:onclick="'openDeleteDialog(' + ${item.id} + ')'">
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

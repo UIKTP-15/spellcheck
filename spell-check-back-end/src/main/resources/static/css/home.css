@@ -32,13 +32,16 @@ body {
     width: 364px;
     height: 365px;
     top: 0;
-    left: 0;
+    left: -100px;
 }
 
 .logo-image {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    position: absolute;
+    left: 200px;
+    top: -70px;
 }
 
 .upload-section {
@@ -340,4 +343,357 @@ body {
     border-radius: 10px;
     background-color: white;
     font-weight: bold;
+}
+
+/* ---------------------On Mobile -------------------------- */
+/* @media (max-width: 600px)  */
+@media only screen and (max-width: 768px) {
+    .home {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .logo-image {
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+        position: absolute;
+        left: 230px;
+        top: -30px;
+    }
+
+    .logo-container {
+        position: absolute;
+        width: 364px;
+        height: 365px;
+        top: 0;
+        left: 0;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        position: relative;
+        overflow: visible;
+        padding: 0 0 60px 0;
+    }
+
+    .user-info {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        order: -1;
+    }
+
+    .header {
+        order: -2;
+        position: static;
+        width: 90%;
+        max-width: 220px;
+        height: auto;
+        margin: 40px auto 0 auto;
+        text-align: center;
+    }
+
+    .branding {
+        order: -1;
+        position: absolute;
+        width: 90vw;
+        max-width: 350px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 2;
+        background: none;
+        height: auto;
+        top: 250px;
+        left: 240px;
+    }
+
+    .brand-arrow {
+        display: none;
+    }
+
+    .brand-logo {
+        position: static;
+        width: 180px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+
+    /* Upload section comes after branding */
+    .upload-section {
+        order: 1;
+        position: absolute;
+        width: 95vw;
+        max-width: 420px;
+        margin: 24px auto 0 auto;
+        z-index: 1;
+        padding-top: 0;
+        top: 350px;
+        left: 200px;
+    }
+
+    /* Rest of your existing mobile styles... */
+    .upload-container {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        border-radius: 16px;
+        position: static;
+        height: auto;
+        min-height: 180px;
+    }
+
+    .upload-area {
+        width: 100%;
+        height: auto;
+        left: 0;
+        top: 0;
+        position: relative;
+        padding: 20px 0;
+    }
+
+    .upload-status {
+        position: static;
+        margin: 16px 0 0 0;
+        width: 100%;
+        max-width: 100%;
+        display: block;
+        text-align: left;
+        background: #f9fffa;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        padding: 10px 8px 14px 8px;
+    }
+
+    .status-heading {
+        font-size: 15px;
+        margin-bottom: 8px;
+        padding-left: 2px;
+        color: #088586;
+        font-weight: 600;
+    }
+
+    .file-progress {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        background: none;
+        box-shadow: none;
+        position: relative;
+        height: 37px;
+    }
+
+    .progress-bar-outline {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+        background: #fff;
+        border-radius: 6px;
+        border: 1px solid #e3e3e3;
+        height: 28px;
+        top: 0;
+        left: 0;
+        position: absolute;
+    }
+
+    .progress-bar-fill {
+        position: absolute;
+        height: 6px;
+        top: 20px;
+        left: 0;
+        border-radius: 10px;
+        background-color: var(--accent-color, #088586);
+        transition: width 0.3s;
+    }
+
+    .file-name {
+        position: absolute;
+        top: 4px;
+        left: 10px;
+        font-size: 13px;
+        max-width: 75vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #222;
+    }
+
+    .cancel-upload {
+        position: absolute;
+        right: 6px;
+        left: unset;
+        top: 6px;
+        width: 20px;
+        height: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+
+    .user-greeting {
+        font-size: 14px;
+    }
+
+    .logout-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .footer {
+        position: fixed;
+        width: 100%;
+        margin-top: auto;
+        padding: 10px 0;
+    }
+
+    .copyright {
+        font-size: 16px;
+    }
+
+    /* for history link */
+    .history {
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+}
+
+/* --------------------- Mobile (under 480px) -------------------------- */
+@media only screen and (max-width: 480px) {
+    .home {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        padding-top: 20px;
+    }
+
+    .logo-container {
+        position: absolute;
+        width: 364px;
+        height: 365px;
+        top: -350px;
+        left: -150px;
+    }
+
+    .logo-image {
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+        position: absolute;
+        left: 230px;
+        top: -30px;
+    }
+
+    .container {
+        width: 100%;
+        height: auto;
+        padding: 0 0 80px 0;
+    }
+
+    /* User info - made more compact */
+    .user-info {
+        position: absolute;
+        top: -350px;
+        right: 10px;
+        gap: 6px;
+    }
+
+    .user-greeting {
+        font-size: 12px;
+        display: block;
+    }
+
+    .logout-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Header with main logo - reduced top margin */
+    .header {
+        width: 70%;
+        max-width: 160px;
+        margin: 20px auto 0 auto; /* Reduced from 50px to 20px */
+    }
+
+    /* Branding (GrammaCheck text) - tighter spacing */
+    .branding {
+        position: static;
+        width: 100%;
+        margin: 10px auto 0 auto; /* Reduced from 20px to 10px */
+    }
+
+    .brand-logo {
+        width: 140px;
+        margin: 0 auto;
+        top: -130px;
+        position: absolute;
+        left: 167px;
+    }
+
+    /* Upload section - moved up closer */
+    .upload-section {
+        position: static;
+        width: 90%;
+        margin: 15px auto 0 auto; /* Reduced from 20px to 15px */
+    }
+
+    /* Rest of your mobile styles... */
+    .upload-container {
+        width: 100%;
+        min-height: 160px;
+    }
+
+    .upload-area {
+        width: 100%;
+        padding: 15px 0;
+    }
+
+    .upload-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .upload-instruction {
+        font-size: 14px;
+        white-space: normal;
+    }
+
+    .file-progress {
+        width: 100%;
+    }
+
+    .progress-bar-outline {
+        width: 100%;
+    }
+
+    .cancel-upload {
+        right: 5px;
+        top: 5px;
+    }
+
+    .check-grammar-button {
+        margin: 10px auto 0 auto; /* Reduced top margin */
+        width: 80%;
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .footer {
+        padding: 6px 0;
+    }
+
+    .copyright {
+        font-size: 12px;
+    }
 }

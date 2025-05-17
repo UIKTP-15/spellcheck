@@ -8,10 +8,15 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +26,10 @@ public class ExportService {
 
     private final GrammarCheckRepository grammarCheckRepository;
 
-    public byte[] generatePdf(Long id) throws IOException {
+    @Value("${model.api.key}")
+    private String apiUrl;
+
+    public byte[] generatePdfWithoutDifferences(Long id) throws IOException {
         GrammarCheck grammarCheck = grammarCheckRepository.findById(id).orElseThrow(NoSuchFieldError::new);
         String content = grammarCheck.getCorrectedText();
 
@@ -92,4 +100,41 @@ public class ExportService {
         return lines;
     }
 
+    public byte[] generatePdfWithDifferences(Long id) {
+        try {
+            GrammarCheck grammarCheck = this.grammarCheckRepository.findById(id).orElseThrow(RuntimeException::new);
+            String url = apiUrl + "find-differences/";
+            String requestBody = String.format(
+                    "{\"original\":\"%s\",\"corrected\":\"%s\"}",
+                    escapeJson(grammarCheck.getInputText()),
+                    escapeJson(grammarCheck.getCorrectedText())
+            );
+
+            HttpClient client = HttpClient.newHttpClient();
+
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                    .build();
+
+            HttpResponse<byte[]> response = client.send(request, HttpResponse.BodyHandlers.ofByteArray());
+
+            if (response.statusCode() == 200) {
+                return response.body();
+            } else {
+                throw new RuntimeException("API request failed with status: " + response.statusCode());
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to generate PDF: " + e.getMessage(), e);
+        }
+    }
+
+    private String escapeJson(String input) {
+        return input.replace("\\", "\\\\")
+                .replace("\"", "\\\"")
+                .replace("\n", "\\n")
+                .replace("\r", "\\r")
+                .replace("\t", "\\t");
+    }
 }

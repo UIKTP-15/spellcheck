@@ -62,7 +62,7 @@ public class ImgBBService {
                 HttpEntity<MultiValueMap<String, Object>> requestEntityModel = new HttpEntity<>(bodyModel, headers);
 
                 ResponseEntity<Map> response = restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntityImgBB, Map.class);
-                ResponseEntity<Map> modelsTextResponse = restTemplate.exchange(api, HttpMethod.POST, requestEntityModel, Map.class);
+                ResponseEntity<Map> modelsTextResponse = restTemplate.exchange(api + "detect-text/", HttpMethod.POST, requestEntityModel, Map.class);
 
                 if (modelsTextResponse.getStatusCode() == HttpStatus.OK) {
                     String modelsResponse = modelsTextResponse.getBody().get("text").toString();

@@ -1,3 +1,4 @@
+/* Base styles */
 body {
     margin: 0;
     font-family: "Poppins", "Montserrat", Helvetica, Arial, sans-serif;
@@ -5,6 +6,13 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+.item-container {
+    position: absolute;
+    top: 300px;
+    left: -120px;
+    width: 120%;
 }
 
 .history {
@@ -25,6 +33,7 @@ body {
     min-height: 100vh;
 }
 
+/* Header styles - Original side-by-side logo layout */
 .header {
     position: absolute;
     width: 364px;
@@ -45,15 +54,18 @@ body {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    position: absolute;
+    left: 200px;
+    top: -70px;
 }
 
+/* Branding styles - Original side-by-side layout */
 .branding {
     position: absolute;
     width: 363px;
     height: 139px;
     top: 127px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 475px;
 }
 
 .brand-logo {
@@ -72,13 +84,15 @@ body {
     left: 0;
 }
 
+/* User info section - Fixed position */
 .user-info {
-    display: inline-flex;
-    align-items: center;
-    gap: 16px;
     position: absolute;
     top: 24px;
     right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 10;
 }
 
 .user-greeting {
@@ -88,6 +102,7 @@ body {
     font-size: 20px;
     letter-spacing: 0;
     line-height: normal;
+    margin: 0;
 }
 
 .logout-button {
@@ -99,32 +114,38 @@ body {
 }
 
 .logout-icon {
-    width: 76px;
-    height: 76px;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
 }
 
-.page-title {
-    margin-top: 300px;
-    text-align: center;
-    font-weight: 600;
-    font-size: 36px;
-    color: #000000;
-    margin-bottom: 30px;
+/* Main content area - Adjusted for desktop */
+.main-content {
+    position: absolute;
+    top: 400px; /* Lower position on desktop */
+    width: 100%;
 }
 
+.page-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 28px;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+/* Filter container */
 .filter-container {
     width: 80%;
-    max-width: 1000px;
     margin: 0 auto 30px;
-    padding: 15px 20px;
+    padding: 20px;
     box-sizing: border-box;
 }
 
 .filter-container form {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px 16px;
+    gap: 15px;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -133,16 +154,18 @@ body {
 .filter-container label {
     font-weight: 500;
     margin-right: 5px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .filter-container input[type="date"],
 .filter-container input[type="text"] {
-    padding: 8px 12px;
+    padding: 10px;
     border: 1px solid #ccc;
-    font-size: 14px;
+    font-size: 16px;
     border-radius: 5px;
     outline: none;
+    flex: 1;
+    min-width: 150px;
 }
 
 .filter-container input:focus {
@@ -158,20 +181,23 @@ body {
 .filter-btn {
     background-color: #088586;
     color: white;
-    padding: 8px 14px;
-    font-size: 14px;
+    padding: 10px 20px;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 100%;
+    max-width: 150px;
+    margin-top: 10px;
 }
 
 .filter-btn:hover {
     background-color: #066e6f;
 }
 
+/* List container - Using CSS Grid */
 .list-container {
     width: 80%;
-    max-width: 1000px;
     margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -184,30 +210,17 @@ body {
 }
 
 .list-header {
-    display: flex;
-    background-color: #f5f5f5;
+    display: grid;
+    grid-template-columns: 20% 45% 15% 20%; /* Adjusted column widths */
     padding: 15px 20px;
+    background-color: #f5f5f5;
     font-weight: 600;
     border-bottom: 1px solid #e0e0e0;
 }
 
-.header-date {
-    width: 20%;
-    min-width: 120px;
-}
-
-.header-title {
-    width: 40%;
-    min-width: 240px;
-}
-
-.header-flagged {
-    width: 20%;
-    min-width: 120px;
-}
-
 .list-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 20% 45% 15% 20%; /* Match header proportions */
     align-items: center;
     padding: 15px 20px;
     border-bottom: 1px solid #e0e0e0;
@@ -215,33 +228,38 @@ body {
     position: relative;
 }
 
-.list-item:hover {
-    background-color: #f9f9f9;
-}
-
-.item-date {
-    width: 20%;
-    min-width: 120px;
+/* Adjust column spacing */
+.header-date, .item-date {
+    width: 100%;
     color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 14px;
+    padding-right: 10px; /* Add padding */
 }
 
-.item-title {
-    width: 40%;
-    min-width: 240px;
+.header-title, .item-title {
+    width: 100%;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 16px;
+    padding-right: 10px; /* Add padding */
 }
 
-.item-flagged {
-    width: 20%;
-    min-width: 120px;
+.header-flagged, .item-flagged {
+    text-align: center;
+    font-size: 16px;
+    padding-right: 10px; /* Add padding */
 }
 
 .item-actions {
-    width: 20%;
-    min-width: 120px;
     display: flex;
     justify-content: flex-end;
-    position: static;
+    gap: 5px; /* Add gap between buttons */
+    flex-wrap: wrap; /* Allow buttons to wrap if needed */
 }
 
 .dots-img {
@@ -252,7 +270,7 @@ body {
 
 .action-button {
     margin: 0 0 0 5px;
-    padding: 6px 12px;
+    padding: 8px 12px;
     border: none;
     border-radius: 4px;
     color: white;
@@ -266,6 +284,7 @@ body {
     text-decoration: none;
 }
 
+/* Modal styles */
 .modal {
     position: fixed;
     z-index: 1000;
@@ -282,7 +301,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     width: 90%;
-    max-width: 400px;
+    max-width: 450px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -291,9 +310,9 @@ body {
 
 .close-modal {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
     font-weight: bold;
     color: #888;
     cursor: pointer;
@@ -302,25 +321,29 @@ body {
 .modal h2 {
     margin-top: 0;
     color: #333;
+    font-size: 24px;
 }
 
 .modal input[type="text"] {
     width: 100%;
-    padding: 10px;
-    margin: 15px 0;
+    padding: 12px;
+    margin: 20px 0;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
+    font-size: 16px;
 }
 
 .confirm-button {
-    padding: 10px 15px;
+    padding: 12px 20px;
     border: none;
     border-radius: 5px;
     color: white;
     font-weight: 500;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 15px;
+    width: 100%;
+    font-size: 16px;
 }
 
 .confirm-button.delete {
@@ -331,6 +354,7 @@ body {
     background-color: #088586;
 }
 
+/* Footer */
 .footer {
     width: 100%;
     background: linear-gradient(
@@ -343,7 +367,7 @@ body {
     align-items: center;
     padding: 20px 0;
     margin-top: auto;
-    position: sticky;
+    position: relative;
     bottom: 0;
 }
 
@@ -352,9 +376,236 @@ body {
     font-weight: 700;
     font-style: italic;
     color: #224424;
-    font-size: 30px;
+    font-size: 24px;
     text-align: center;
     letter-spacing: 0;
     line-height: normal;
     margin: 0;
+}
+
+/* --------------------- Tablet (481px to 768px) -------------------------- */
+@media screen and (max-width: 768px) {
+    /* Reset absolute positioning for tablet */
+    .header {
+        position: relative;
+        width: 100%;
+        height: auto;
+        top: auto;
+        left: auto;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    .item-container {
+        position: static;
+        width: 100%;
+    }
+
+    .logo-container {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin: 0 auto;
+        top: auto;
+        left: auto;
+    }
+
+    .logo-image {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .branding {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin: 0 auto 30px;
+        top: auto;
+        left: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .brand-logo {
+        position: relative;
+        width: 80%;
+        max-width: 250px;
+        height: auto;
+        left: auto;
+        top: auto;
+    }
+
+    .brand-arrow {
+        position: relative;
+        width: 40%;
+        max-width: 100px;
+        height: auto;
+        top: auto;
+        left: auto;
+        margin-top: -30px;
+    }
+
+    .main-content {
+        position: relative;
+        top: auto;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .user-info {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .user-greeting {
+        font-size: 16px;
+    }
+
+    .logout-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .page-title {
+        font-size: 24px;
+        margin-top: 0;
+    }
+
+    .filter-container {
+        width: 90%;
+        margin: 0 auto 25px;
+        padding: 15px;
+    }
+
+    .filter-container form {
+        gap: 12px;
+    }
+
+    .filter-container label {
+        font-size: 15px;
+    }
+
+    .filter-container input[type="date"],
+    .filter-container input[type="text"] {
+        padding: 8px;
+        font-size: 15px;
+    }
+
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 15px;
+    }
+
+    .list-container {
+        width: 90%;
+    }
+
+    .list-header,
+    .list-item {
+        grid-template-columns: 22% 43% 15% 20%; /* Slightly adjust for tablet */
+        padding: 12px 15px;
+    }
+
+    .copyright {
+        font-size: 20px;
+    }
+}
+
+/* --------------------- Mobile (up to 480px) -------------------------- */
+@media screen and (max-width: 480px) {
+    .user-info {
+        top: 15px;
+        right: 15px;
+    }
+
+    .user-greeting {
+        font-size: 14px; /* Keep visible but smaller */
+    }
+
+    .logout-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .page-title {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .filter-container {
+        padding: 12px;
+    }
+
+    .filter-container form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .filter-container label {
+        font-size: 14px;
+    }
+
+    .filter-container input[type="date"],
+    .filter-container input[type="text"] {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .filter-btn {
+        margin-top: 5px;
+        padding: 8px 12px;
+        font-size: 14px;
+        max-width: none;
+    }
+
+    .list-header,
+    .list-item {
+        grid-template-columns: 25% 35% 15% 25%; /* More space for actions on mobile */
+        padding: 10px 12px;
+    }
+
+    .item-actions {
+        flex-direction: column; /* Stack buttons vertically on small screens */
+        gap: 3px;
+    }
+
+    .action-button {
+        width: 100%; /* Full width buttons */
+        text-align: center;
+        padding: 4px 6px;
+    }
+
+    .header-date, .item-date {
+        font-size: 12px;
+    }
+
+    .header-title, .item-title {
+        font-size: 14px;
+    }
+
+    .dots-img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .modal h2 {
+        font-size: 20px;
+    }
+
+    .copyright {
+        font-size: 18px;
+    }
 }

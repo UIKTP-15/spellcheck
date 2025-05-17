@@ -3,6 +3,7 @@ package finki_ukim.spell_check_back_end.controller;
 import finki_ukim.spell_check_back_end.model.User;
 import finki_ukim.spell_check_back_end.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +41,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/login")
+    @GetMapping(value = "/login", produces = MediaType.TEXT_HTML_VALUE)
     public String getLoginPage() {
         return "login";
     }

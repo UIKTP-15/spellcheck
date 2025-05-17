@@ -1,0 +1,353 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", Helvetica;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* ---------------------Login Page -------------------------- */
+.login-page {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 100vh;
+}
+
+.login-page .div {
+    background-color: #ffffff;
+    width: 1440px;
+    height: 960px;
+    position: relative;
+}
+
+.login-page .overlap {
+    position: absolute;
+    width: 594px;
+    height: 835px;
+    top: 0;
+    left: 423px;
+}
+
+.overlap .logo {
+    margin-bottom: 20px;
+    top: 0;
+    left: 100px;
+    width: 380px;
+    position: absolute;
+}
+
+.login-page .rectangle-2 {
+    position: absolute;
+    width: 594px;
+    height: 484px;
+    top: 351px;
+    left: 0;
+    border-radius: 60px;
+    background: linear-gradient(180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(225, 255, 187, 1) 48%,
+    rgba(0, 153, 144, 1) 96%);
+}
+
+.login-page .content {
+    display: flex;
+    flex-direction: column;
+    width: 426px;
+    height: 380px;
+    align-items: center;
+    gap: 24px;
+    position: absolute;
+    top: 418px;
+    left: 73px;
+    z-index: 1;
+}
+
+.login-page .copy {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.login-page .p {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-weight: bold;
+    color: #000000;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.login-page .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+.login-page .horizontal_line {
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+    height: 1px;
+    background-color: #1d164b;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 490px;
+    left: 105px;
+    width: 400px;
+    z-index: 2;
+}
+
+.form label {
+    margin-left: 5px;
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+.form input,
+#name,
+#lastname {
+    padding: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1.5px solid black;
+    border-radius: 10px;
+    background-color: unset;
+}
+
+.login-page .group-2 {
+    position: relative;
+    width: 310px;
+    height: 78px;
+    margin: 10px auto;
+}
+
+.login-page .login-btn {
+    display: block;
+    position: relative;
+    width: 210px;
+    margin: 0 auto;
+    font-weight: 800;
+    color: #234424;
+    font-size: 33px;
+    letter-spacing: 0;
+    line-height: normal;
+    text-decoration: none;
+    background: linear-gradient(to right,
+    rgba(225, 255, 187, 1) 48%,
+    rgba(0, 153, 144, 1) 96%);
+    padding: 5px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.login-page .login-btn:hover {
+    color: #1d3535;
+    transform: scale(1.05);
+}
+
+.login-page .text-wrapper-5 {
+    position: absolute;
+    top: 364px;
+    left: 171px;
+    font-weight: bold;
+    color: #000000;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: normal;
+    z-index: 1;
+}
+
+.login-page .don-t-have-an-wrapper {
+    position: absolute;
+    width: 349px;
+    height: 23px;
+    top: 867px;
+    left: 570px;
+}
+
+.login-page .don-t-have-an {
+    position: absolute;
+    width: 347px;
+    top: 0;
+    left: 0;
+    font-family: "Poppins", Helvetica;
+    font-weight: 500;
+    color: transparent;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.login-page .text-wrapper-6 {
+    color: #000000;
+}
+
+.login-page .text-wrapper-7 {
+    color: #0f3cde;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out, transform 0.2s ease;
+}
+
+.login-page .text-wrapper-7:hover {
+    color: #0b2fa8;
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* --------------------- Responsive Fixes -------------------------- */
+/* Mobile (<= 425px) */
+@media screen and (max-width: 425px) {
+    .login-page {
+        padding: 20px;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .login-page .div {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-page .overlap {
+        position: relative;
+        width: 100%;
+        height: auto;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .overlap .logo {
+        position: relative;
+        width: 250px;
+        left: 0;
+        margin: 20px auto;
+        display: block;
+    }
+
+    /* Further adjusted positioning */
+    .login-page .rectangle-2 {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 600px;
+        top: 0;
+        left: 0;
+        border-radius: 40px;
+        margin: 0 0 30px 0;
+        z-index: 1;
+    }
+
+    .login-page .text-wrapper-5 {
+        position: absolute;
+        top: 350px; /* Adjusted to match desktop position relative to rectangle */
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 28px;
+        width: 100%;
+        z-index: 2;
+    }
+
+    .login-page .content {
+        position: absolute;
+        width: 90%;
+        top: 420px; /* Adjusted to match desktop position relative to rectangle */
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        z-index: 2;
+    }
+
+    .form {
+        position: absolute;
+        width: 90%;
+        top: 500px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        z-index: 2;
+    }
+
+    .login-page .group-2 {
+        position: relative;
+        width: 100%;
+        margin: 20px auto;
+    }
+
+    .login-page .login-btn {
+        position: relative;
+        margin: 0 auto;
+        display: block;
+        font-size: 28px;
+        width: 180px;
+    }
+
+    .login-page .don-t-have-an-wrapper {
+        position: absolute;
+        width: 100%;
+        top: 900px;
+        left: 0;
+        z-index: 2;
+        text-align: center;
+    }
+
+    .login-page .don-t-have-an {
+        position: relative;
+        width: 100%;
+        left: 0;
+        text-align: center;
+    }
+}
+
+/* Tablet (<= 768px) */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .login-page .div {
+        width: 100%;
+    }
+
+    .login-page .overlap {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .login-page .don-t-have-an-wrapper {
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+}

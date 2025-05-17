@@ -4,7 +4,6 @@
 
 body {
     margin: 0;
-    /* font-family: "Inter", Sans-serif; */
     font-family: "Poppins", Helvetica;
 }
 
@@ -12,81 +11,13 @@ img {
     max-width: 100%;
 }
 
-/* --------------------Entry Page-------------------------- */
-.entry_page {
-    display: flex;
-    height: 100vh;
-}
-
-.gradient {
-    width: 40%;
-    padding: 20px;
-    background: linear-gradient(180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(225, 255, 187, 1) 48%,
-    rgba(0, 153, 144, 1) 96%);
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-
-.gradient h3 {
-    color: black;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-    font-style: italic;
-}
-
-.white {
-    text-align: center;
-    width: 60%;
-    padding: 20px;
-    background-color: white;
-}
-
-.white h2 {
-    white-space: pre-line;
-    color: black;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.btn {
-    margin-top: 60px;
-    display: inline-block;
-    background: linear-gradient(to right,
-    rgba(225, 255, 187, 1) 48%,
-    rgba(0, 153, 144, 1) 96%);
-    width: 150px;
-    margin-right: 20px;
-    /* border: linear-gradient(
-          to right,
-          rgba(225, 255, 187, 1) 48%,
-          rgba(0, 153, 144, 1) 96%
-        ); */
-    border: unset;
-    border-radius: 15px;
-}
-
-.btn:hover {
-    background: linear-gradient(to right,
-    rgba(200, 230, 160, 1) 48%,
-    rgba(0, 130, 120, 1) 96%);
-    transform: scale(1.05);
-}
-
-.white a {
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 20px;
-}
-
 /* ---------------------Login Page -------------------------- */
+
 .login-page {
     background-color: #ffffff;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    /* width: 100%; */
     height: 100vh;
 }
 
@@ -136,6 +67,7 @@ img {
     position: absolute;
     top: 418px;
     left: 73px;
+    z-index: 1;
 }
 
 .login-page .copy {
@@ -182,9 +114,10 @@ img {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 490px;
+    top: 450px;
     left: 105px;
     width: 400px;
+    z-index: 2;
 }
 
 .form label {
@@ -209,8 +142,8 @@ img {
     position: absolute;
     width: 310px;
     height: 78px;
-    top: 230px;
-    left: 20px;
+    top: 300px;
+    left: 30px;
 }
 
 .login-page .login-btn {
@@ -247,6 +180,7 @@ img {
     font-size: 32px;
     letter-spacing: 0;
     line-height: normal;
+    z-index: 1;
 }
 
 .login-page .don-t-have-an-wrapper {
@@ -286,7 +220,146 @@ img {
     transform: scale(1.1);
 }
 
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* --------------------- Mobile Login Page -------------------------- */
+@media screen and (max-width: 425px) {
+    .login-page {
+        padding: 20px;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .login-page .div {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-page .overlap {
+        position: relative;
+        width: 100%;
+        height: auto;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .overlap .logo {
+        position: relative;
+        width: 250px;
+        left: 0;
+        margin: 20px auto;
+        display: block;
+    }
+
+    /* Login mobile positioning */
+    .login-page .rectangle-2 {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 600px;
+        top: 0;
+        left: 0;
+        border-radius: 40px;
+        margin: 0 0 30px 0;
+        z-index: 1;
+    }
+
+    .login-page .text-wrapper-5 {
+        position: absolute;
+        top: 370px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 28px;
+        width: 100%;
+        z-index: 2;
+    }
+
+    .login-page .content {
+        position: absolute;
+        width: 90%;
+        top: 420px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        z-index: 2;
+    }
+
+    .form {
+        position: absolute;
+        width: 90%;
+        top: 490px;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0;
+        z-index: 2;
+    }
+
+    .login-page .group-2 {
+        position: relative;
+        width: 100%;
+        margin: 20px auto;
+        top: 0;
+        left: 0;
+    }
+
+    .login-page .login-btn {
+        position: relative;
+        margin: 0 auto;
+        display: block;
+        font-size: 28px;
+        width: 180px;
+        top: 0;
+        left: 0;
+    }
+
+    .login-page .don-t-have-an-wrapper {
+        position: absolute;
+        width: 100%;
+        top: 680px;
+        left: 0;
+        z-index: 2;
+        text-align: center;
+    }
+
+    .login-page .don-t-have-an {
+        position: relative;
+        width: 100%;
+        left: 0;
+        text-align: center;
+    }
+}
+
+/* Tablet Login (<= 768px) */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .login-page .div {
+        width: 100%;
+    }
+
+    .login-page .overlap {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .login-page .don-t-have-an-wrapper {
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+}
+
 /* ----------------------Register Page------------------------- */
+
 .login-page .rectangle-2-register {
     position: absolute;
     width: 594px;
@@ -298,6 +371,7 @@ img {
     rgba(255, 255, 255, 1) 0%,
     rgba(225, 255, 187, 1) 48%,
     rgba(0, 153, 144, 1) 96%);
+    z-index: 1;
 }
 
 .form-name {
@@ -322,7 +396,7 @@ img {
     display: block;
     position: absolute;
     width: 210px;
-    top: 100px;
+    top: 13px;
     left: 70px;
     font-weight: 800;
     color: #234424;
@@ -371,80 +445,63 @@ input[type="password"] {
     z-index: 1;
 }
 
-/* ----------------Home Page----------------------------- */
-/* ----------------Preview Page-------------------------- */
-/* ----------------History Page-------------------------- */
-/* ----------------Loading Page-------------------------- */
-.loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f7f9fb;
-    transition: opacity 0.75s visibility 0.75s;
-}
-
-.loader-hidden {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.loader::after {
-    content: "";
-    width: 75px;
-    height: 75px;
-    border: 15px solid #dddddd;
-    border-top-color: #7449f5;
-    border-radius: 50%;
-    animation: loading 0.75s ease infinite
-}
-
-@keyframes loading {
-    from {
-        transform: rotate(0turn);
+/* Mobile Register Page */
+@media screen and (max-width: 425px) {
+    /* Register specific styles */
+    .login-page .rectangle-2-register {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 700px;
+        top: 0;
+        left: 0;
+        border-radius: 40px;
+        margin: 0 0 30px 0;
+        z-index: 1;
     }
-    to {
-        transform: rotate(1turn);
+
+    .login-page .have-an-wrapper {
+        position: absolute;
+        width: 100%;
+        top: 1000px;
+        left: 0;
+        padding-bottom: 20px;
+        z-index: 2;
+        text-align: center;
+    }
+
+    .login-page .have-an {
+        position: relative;
+        width: 100%;
+        left: 0;
+        text-align: center;
+    }
+
+    .input-group {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .login-page .signup-btn {
+        position: relative;
+        margin: 0 auto;
+        display: block;
+        font-size: 28px;
+        width: 180px;
+        top: 0;
+        left: 0;
     }
 }
 
-.error {
-    color: red;
-    align-content: center;
-    display: block;
-    font-size: larger;
-    text-align: center;
-}
+/* Tablet Register Page */
+@media screen and (min-width: 426px) and (max-width: 768px) {
+    .login-page .have-an-wrapper {
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
 
-@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
-* {
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-button:focus-visible {
-    outline: 2px solid #4a90e2 !important;
-}
-
-a {
-    text-decoration: none;
+    .login-page .rectangle-2-register {
+        width: 100%;
+    }
 }
