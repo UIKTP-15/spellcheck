@@ -136,6 +136,7 @@ img {
     border: 1.5px solid black;
     border-radius: 10px;
     background-color: unset;
+    width: 100%;
 }
 
 .login-page .group-2 {
@@ -188,7 +189,7 @@ img {
     width: 349px;
     height: 23px;
     top: 867px;
-    left: 570px;
+    left: 630px;
 }
 
 .login-page .don-t-have-an {
@@ -422,7 +423,7 @@ img {
     width: 349px;
     height: 23px;
     top: 930px;
-    left: 570px;
+    left: 630px;
     padding-bottom: 50px;
 }
 
